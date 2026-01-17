@@ -65,16 +65,15 @@ export function UploadSection() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75"></span>
             <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
           </span>
-          AI-Powered Assembly Visualization
+          AI-Powered Assembly Guide
         </div>
 
         <h1 className="mb-4 text-5xl font-bold tracking-tight text-balance text-white">
-          Transform Assembly Manuals into <span className="text-secondary">Interactive 3D</span>
+          Never Misread an Assembly Manual <span className="text-secondary">Again</span>
         </h1>
 
         <p className="mb-12 text-xl text-white/90 text-balance">
-          Upload your furniture assembly manuals and watch AI convert them into step-by-step 3D animations with the
-          classic black & white manual aesthetic.
+          Tired of flat diagrams and confusing steps? Upload your assembly manuals and let our AI transform them into an intuitive 3D experience. 
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -159,7 +158,7 @@ export function UploadSection() {
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-secondary" />
-            <span>3D Visualization</span>
+            <span>3D Visualisation</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-secondary" />

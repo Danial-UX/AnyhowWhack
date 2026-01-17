@@ -19,7 +19,7 @@ export function Navigation() {
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold tracking-tight">
                 <span className="text-[#0051BA]">Anyhow</span>
-                <span className="text-[#FFDA1A] italic">Whack</span>
+                <span className="text-[#ffd501] italic">Whack</span>
                 <span className="text-[#0051BA]">.com</span>
               </span>
             </Link>
