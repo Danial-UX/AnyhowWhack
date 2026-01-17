@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { X, Maximize2, Settings } from "lucide-react"
 import Link from "next/link"
@@ -14,7 +14,18 @@ interface ViewerLayoutProps {
 
 export function ViewerLayout({ manualId }: ViewerLayoutProps) {
   const [currentStep, setCurrentStep] = useState(0)
+  const [stepData, setStepData] = useState<any>(null)
   const [isFullscreen, setIsFullscreen] = useState(false)
+
+  useEffect(() => {
+  if (!manualId) return
+  const fetchStep = async () => {
+    const res = await fetch(`http://localhost:4000/manuals/${manualId}/steps/${currentStep}`)
+    const data = await res.json()
+    setStepData(data)
+  }
+  fetchStep()
+}, [manualId, currentStep])
 
   return (
     <div className="flex h-screen flex-col bg-primary">
@@ -46,19 +57,19 @@ export function ViewerLayout({ manualId }: ViewerLayoutProps) {
       <div className="flex flex-1 overflow-hidden">
         {/* Left Sidebar - Steps */}
         <aside className="w-80 border-r border-border bg-card overflow-y-auto">
-          <StepsList currentStep={currentStep} onStepChange={setCurrentStep} />
+          <StepsList currentStep={currentStep} onStepChange={setCurrentStep} manualId={manualId} />
         </aside>
 
         {/* Center - 3D Canvas */}
         <main className="flex flex-1 flex-col">
           <div className="relative flex-1 overflow-y-auto bg-primary/20">
-            <Canvas3D currentStep={currentStep} />
+            <Canvas3D currentStep={stepData?.three_state} />
           </div>
         </main>
 
         {/* Right Sidebar - Parts */}
         <aside className="w-80 border-l border-border bg-card overflow-y-auto">
-          <PartsPanel currentStep={currentStep} />
+          <PartsPanel currentStep={stepData?.parts} />
         </aside>
       </div>
     </div>
