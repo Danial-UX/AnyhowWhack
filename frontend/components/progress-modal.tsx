@@ -48,7 +48,7 @@ export function ProgressModal({ open, onComplete }: ProgressModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={() => {}}>
-      <DialogContent className="sm:max-w-md bg-card border-border" hideClose>
+      <DialogContent className="sm:max-w-md bg-card border-border" aria-describedby="upload-dialog-desc" showCloseButton={false}>
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-primary flex items-center gap-2">
             <Sparkles className="h-6 w-6 text-secondary animate-pulse" />

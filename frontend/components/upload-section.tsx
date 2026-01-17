@@ -40,10 +40,71 @@ export function UploadSection() {
     }
   }
 
-  const handleGenerate = (manualName: string) => {
-    console.log("[v0] Generating manual for:", manualName, "File:", uploadedFile)
+  const handleGenerate = async (manualName: string) => {
+    if (!uploadedFile) return
+
     setIsManualDetailsOpen(false)
     setIsProgressModalOpen(true)
+
+    try {
+      // 1. Create FormData
+      const formData = new FormData()
+      formData.append("file", uploadedFile)
+      formData.append("manualName", manualName)
+
+      // 2. Upload file to backend
+      const response = await fetch("http://localhost:4000/manuals/upload", { method: "POST", body: formData })
+
+      // 2a. Read response as text first
+      const text = await response.text()
+      let data
+      try {
+        data = JSON.parse(text) // try parse JSON
+      } catch {
+        console.error("Upload failed. Server response not JSON:", text)
+        setIsProgressModalOpen(false)
+        alert("Upload failed")
+        return
+      }
+
+      console.log("Upload succeeded:", data)
+
+      const manualId = data.manualId
+      if (!manualId) {
+        console.error("No manual ID returned from server:", data)
+        setIsProgressModalOpen(false)
+        alert("Upload failed")
+        return
+      }
+
+      // 3. Poll progress
+      const interval = setInterval(async () => {
+        try {
+          const statusRes = await fetch(`http://localhost:4000/manuals/${manualId}/status`)
+          const statusData = await statusRes.json()
+
+          if (statusData.status === "ready") {
+            clearInterval(interval)
+            setIsProgressModalOpen(false)
+            console.log("[UploadSection] Generation complete!")
+            window.location.href = `/viewer/${manualId}`
+          } else if (statusData.status === "failed") {
+            clearInterval(interval)
+            setIsProgressModalOpen(false)
+            alert("Manual generation failed. Try again.")
+          }
+        } catch (err) {
+          console.error("Error polling status:", err)
+          clearInterval(interval)
+          setIsProgressModalOpen(false)
+          alert("Failed to fetch manual status")
+        }
+      }, 2000)
+    } catch (err) {
+      console.error("Upload error:", err)
+      setIsProgressModalOpen(false)
+      alert("Upload failed")
+    }
   }
 
   const handleButtonClick = (e: React.MouseEvent) => {

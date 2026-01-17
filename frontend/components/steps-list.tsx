@@ -1,20 +1,27 @@
 "use client"
-
+import { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AlertTriangle } from "lucide-react"
 import { manualSteps } from "@/lib/manual-steps"
 
+interface Step {
+  index: number
+  title: string
+  warnings: string[]
+  thumbnail: string
+}
+
 interface StepsListProps {
   currentStep: number
   onStepChange: (step: number) => void
+  manualId: string
 }
 
 export function StepsList({ currentStep, onStepChange }: StepsListProps) {
   return (
     <div className="bg-primary/5 p-4">
       <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-primary">Assembly Steps</h2>
-
       <div className="space-y-2">
         {manualSteps.map((step) => (
           <Card
