@@ -8,7 +8,7 @@ import { Upload, Library, Settings } from "lucide-react"
 export function Navigation() {
   const pathname = usePathname()
 
-  const logoText = "ScrewYouIKEA.com"
+  const logoText = "AnyhowWhack"
   const words = logoText.split(/(?=[A-Z])/)
 
   return (
@@ -18,8 +18,8 @@ export function Navigation() {
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold tracking-tight">
-                <span className="text-[#0051BA]">ScrewYou</span>
-                <span className="text-[#FFDA1A] italic">IKEA</span>
+                <span className="text-[#0051BA]">Anyhow</span>
+                <span className="text-[#FFDA1A] italic">Whack</span>
                 <span className="text-[#0051BA]">.com</span>
               </span>
             </Link>
