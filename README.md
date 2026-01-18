@@ -5,6 +5,17 @@ Tired of flat diagrams, unclear arrows, and steps that seem to skip the part you
 ## What it does?
 AnyhowWHACK turns those static manuals into intuitive, step by step 3D animations. Users simply upload an assembly manual, and Gemini.AI transforms it into a clean, interactive visualisation that preserves the familiar black-and-white instruction style without the confusion. Each step is rendered clearly in 3D, with labeled parts and smooth animations that show exactly how components fit together in a 360 view.
 
+## Snapshots
+
+<img width="1887" height="949" alt="Screenshot 2026-01-18 111142" src="https://github.com/user-attachments/assets/d7d1fff9-e557-418a-90cc-ea2cc61ad08d" />
+
+<img width="1867" height="961" alt="Screenshot 2026-01-18 111220" src="https://github.com/user-attachments/assets/a3e11d0e-1f5e-41c8-ad14-ffd99ad96595" />
+
+<img width="1282" height="716" alt="Screenshot 2026-01-18 111302" src="https://github.com/user-attachments/assets/a0f6131f-33af-4298-b3a5-c7315a72b7a1" />
+
+<img width="1898" height="1011" alt="Screenshot 2026-01-18 111415" src="https://github.com/user-attachments/assets/c75f76e8-73c0-4adf-94f7-6c854fac2acb" />
+
+
 ## Features
 
 📤 Upload once, let AI do the rest.
@@ -24,8 +35,9 @@ Each manual comes to life in an interactive 3D viewer that walks you through the
 - **Tailwind CSS** - Utility-first CSS framework
 
 ### Backend
-- **Node.js** 
-- **mongoDB** 
+- **Node.js**
+- **Express**
+- **Supabase** 
 - **Gemini AI** 
 
 ## Project Structure
@@ -60,15 +72,11 @@ frontend/
 2. **Install dependencies**
    ```bash
    pnpm install
-   or
-   npm install
    ```
 
 3. **Start the development server**
    ```bash
    pnpm dev
-   or
-   npm run dev
    ```
 
 4. **Open your browser**
