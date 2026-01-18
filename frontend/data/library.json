@@ -3809,5 +3809,27 @@
     "totalPages": 28,
     "createdAt": "2026-01-18T01:03:49.888Z",
     "thumbnail": "/converted-manuals/ikea_demo_manual_page_01.jpg"
+  },
+  {
+    "id": "1768702887545",
+    "manualName": "malm-ottoman-bed-white__AA-2055625-9-100",
+    "originalFilename": "malm-ottoman-bed-white__AA-2055625-9-100.pdf",
+    "pages": [
+      "/converted-manuals/malm-ottoman-bed-white__AA-2055625-9-100_page_01.jpg"
+    ],
+    "totalPages": 1,
+    "createdAt": "2026-01-18T02:21:27.527Z",
+    "thumbnail": "/converted-manuals/malm-ottoman-bed-white__AA-2055625-9-100_page_01.jpg"
+  },
+  {
+    "id": "1768703458672",
+    "manualName": "malm-ottoman-bed-white__AA-2055625-9-100",
+    "originalFilename": "malm-ottoman-bed-white__AA-2055625-9-100.pdf",
+    "pages": [
+      "/converted-manuals/malm-ottoman-bed-white__AA-2055625-9-100_page_01.jpg"
+    ],
+    "totalPages": 1,
+    "createdAt": "2026-01-18T02:30:58.655Z",
+    "thumbnail": "/converted-manuals/malm-ottoman-bed-white__AA-2055625-9-100_page_01.jpg"
   }
 ]

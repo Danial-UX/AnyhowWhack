@@ -5,22 +5,98 @@ import { VoiceAssistantInput } from "@/components/voice-assistant-input"
 import { ThreeRunner } from "@/components/three-runner"
 import { manualSteps } from "@/lib/manual-steps"
 
-interface Canvas3DProps {
-  currentStep: number
+interface SceneJson {
+  camera: {
+    type: string
+    position: number[]
+    target: number[]
+  }
+  parts: Array<{
+    id: string
+    type: string
+    dimensions: any
+    position: number[]
+    rotation?: number[]
+    style: {
+      line: string
+      fill: string
+      edgeWidth: number
+    }
+  }>
+  assemblies: Array<{
+    action: string
+    from: string
+    to: string
+    position: number[]
+  }>
+  timeline: Array<{
+    t: number
+    action: string
+    target: string
+    to?: number[]
+  }>
 }
 
-export function Canvas3D({ currentStep }: Canvas3DProps) {
+interface Canvas3DProps {
+  currentStep: number
+  sceneData?: SceneJson | null
+  stepCode?: string
+  stepTitle?: string
+  isExtracting?: boolean
+}
+
+export function Canvas3D({ currentStep, sceneData, stepCode, stepTitle, isExtracting = false }: Canvas3DProps) {
   const step = manualSteps[currentStep]
+  const hasSceneData = Boolean(sceneData)
+  const codeToRun = stepCode ?? step?.threeCode
+  const derivedTitle = stepTitle ?? step?.title ?? (hasSceneData ? 'AI-Generated 3D Scene' : undefined)
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex flex-1 items-center justify-center p-8">
-        <Card className="relative aspect-square w-full max-w-2xl overflow-hidden border-2 border-secondary bg-white">
-          <ThreeRunner code={step?.threeCode} stepKey={currentStep} />
+      <div className="flex flex-1 items-center justify-center p-4">
+        <Card className="relative flex h-full w-full max-h-[calc(100vh-160px)] max-w-5xl flex-col overflow-hidden border-2 border-secondary bg-white">
+          {hasSceneData ? (
+            <div className="flex flex-1 items-center justify-center p-6">
+              <div className="text-center p-8">
+                <div className="text-2xl mb-4">🔧</div>
+                <h3 className="text-lg font-semibold mb-2">3D Assembly Visualization</h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  AI-extracted 3D scene data available for this step
+                </p>
+                <pre className="text-xs bg-muted p-3 rounded max-h-32 overflow-y-auto text-left">
+                  {JSON.stringify(sceneData, null, 2)}
+                </pre>
+              </div>
+            </div>
+          ) : (
+            codeToRun ? (
+              <div className="flex-1 min-h-0">
+                <ThreeRunner code={codeToRun} stepKey={currentStep} />
+              </div>
+            ) : (
+              <div className="flex h-full flex-1 items-center justify-center">
+                <p className="text-muted-foreground text-sm">Interactive preview not available for this step.</p>
+              </div>
+            )
+          )}
 
           <div className="absolute left-4 top-4 flex max-w-[75%] flex-col gap-1 rounded-lg border border-border bg-card/95 px-3 py-2 text-xs font-medium text-foreground backdrop-blur-sm">
-            <span className="uppercase tracking-wide text-muted-foreground">Step {currentStep + 1}</span>
-            {step?.title && <span className="text-sm text-foreground">{step.title}</span>}
+            <span className="uppercase tracking-wide text-muted-foreground">
+              Step {currentStep + 1}
+              {isExtracting && (
+                <span className="ml-2 inline-flex items-center text-xs">
+                  <div className="animate-spin rounded-full h-2 w-2 border-b border-gray-600 mr-1"></div>
+                  Extracting...
+                </span>
+              )}
+            </span>
+            {isExtracting ? (
+              <span className="text-sm text-muted-foreground">Analyzing 3D structure...</span>
+            ) : (
+              <span className="text-sm text-foreground">
+                {derivedTitle || 'Interactive preview'}
+              </span>
+            )}
           </div>
 
           <div className="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-lg bg-card/90 px-3 py-1 text-xs text-muted-foreground shadow">
@@ -35,49 +111,3 @@ export function Canvas3D({ currentStep }: Canvas3DProps) {
     </div>
   )
 }
-
-
-
-// "use client"
-
-// import { Card } from "@/components/ui/card"
-// import { Cable as Cube, RotateCw } from "lucide-react"
-// import { VoiceAssistantInput } from "@/components/voice-assistant-input"
-
-// interface Canvas3DProps {
-//   currentStep: number
-// }
-
-// export function Canvas3D({ currentStep }: Canvas3DProps) {
-//   return (
-//     <div className="flex h-full flex-col">
-//       <div className="flex flex-1 items-center justify-center p-8">
-//         <Card className="relative aspect-square w-full max-w-2xl overflow-hidden border-2 border-secondary bg-white">
-//           {/* Placeholder for 3D canvas */}
-//           <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center">
-//             <div className="rounded-full bg-primary/10 p-6">
-//               <Cube className="h-16 w-16 text-primary" />
-//             </div>
-//             <div>
-//               <h3 className="mb-2 text-lg font-semibold text-foreground">3D Canvas Area</h3>
-//               <p className="text-sm text-muted-foreground">
-//                 Three.js rendering will display here with black & white line art style
-//               </p>
-//             </div>
-//             <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
-//               <RotateCw className="h-4 w-4" />
-//               <span>Drag to rotate • Scroll to zoom</span>
-//             </div>
-//           </div>
-
-//           {/* Step indicator overlay */}
-//           <div className="absolute left-4 top-4 rounded-lg border border-border bg-card/95 px-3 py-2 text-sm font-medium backdrop-blur-sm">
-//             Step {currentStep + 1}
-//           </div>
-//         </Card>
-//       </div>
-
-//       <VoiceAssistantInput />
-//     </div>
-//   )
-// }
