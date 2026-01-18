@@ -35,8 +35,9 @@ Each manual comes to life in an interactive 3D viewer that walks you through the
 - **Tailwind CSS** - Utility-first CSS framework
 
 ### Backend
-- **Node.js** 
-- **mongoDB** 
+- **Node.js**
+- **Express**
+- **Supabase** 
 - **Gemini AI** 
 
 ## Project Structure
