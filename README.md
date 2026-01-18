@@ -7,9 +7,12 @@ AnyhowWHACK turns those static manuals into intuitive, step by step 3D animation
 
 ## Snapshots
 
-<img width="1887" height="949" alt="Screenshot 2026-01-18 111142" src="https://github.com/user-attachments/assets/d7d1fff9-e557-418a-90cc-ea2cc61ad08d" 
+<img width="1887" height="949" alt="Screenshot 2026-01-18 111142" src="https://github.com/user-attachments/assets/d7d1fff9-e557-418a-90cc-ea2cc61ad08d" />
+
 <img width="1867" height="961" alt="Screenshot 2026-01-18 111220" src="https://github.com/user-attachments/assets/a3e11d0e-1f5e-41c8-ad14-ffd99ad96595" />
+
 <img width="1282" height="716" alt="Screenshot 2026-01-18 111302" src="https://github.com/user-attachments/assets/a0f6131f-33af-4298-b3a5-c7315a72b7a1" />
+
 <img width="1898" height="1011" alt="Screenshot 2026-01-18 111415" src="https://github.com/user-attachments/assets/c75f76e8-73c0-4adf-94f7-6c854fac2acb" />
 
 
