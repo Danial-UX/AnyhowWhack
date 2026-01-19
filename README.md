@@ -18,7 +18,7 @@ AnyhowWHACK turns those static manuals into intuitive, step by step 3D animation
 
 ## Features
 
-📤 Upload once, let AI do the rest.
+## 📤 Upload once, let AI do the rest.
 Drag and drop a PDF or image of your assembly manual and AnyhowWHACK immediately gets to work analysing steps, identifying parts, and structuring the entire build process. A live progress indicator keeps you informed as your manual is transformed.
 
 ## All your manuals, organized and accessible.
